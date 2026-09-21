@@ -96,10 +96,10 @@
   {
    "year": 2024,
    "box": "Apple M4 Pro, 10 P-cores (this laptop)",
-   "fp64_mflops": 365360,
+   "fp64_mflops": 373233,
    "kind": "measured",
    "cite": "param-fp64",
-   "note": "Livermore Loop 7, 10 independent processes; peak by architecture ≈ 720 GFLOPS"
+   "note": "Livermore Loop 7, 10 independent processes, quiet machine; peak by architecture ≈ 720 GFLOPS"
   }
  ]
 }
