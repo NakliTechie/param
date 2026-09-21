@@ -1,0 +1,27 @@
+workload,machine,cores,mode,precision,mflops,source,compiler,flags,runs,thermal,citation
+ll7f32,t800-30,1,single,fp32,2.25,published,occam (Inmos),,,,tn06
+ll7f32,t800-20,1,single,fp32,1.5,published,occam (Inmos),,,,tn06
+ll7f32,t414-20,1,single,fp32,0.09,published,occam (Inmos),,,,tn06
+ll7f32,vax11-780-fpa,1,single,fp32,0.54,published,,,,,tn06
+linpack100,t800-20,1,single,fp64,0.37,published,Fortran 3L -:o0,,,,dongarra-2014
+linpack100,cray-xmp14se,1,single,fp64,53,published,cf77 3.0,,,,dongarra-2014
+linpack1000,cray-xmp14se,1,single,fp64,184,published,best effort,,,,dongarra-2014
+peak,cray-xmp14se,1,single,fp64,210,published,,,,,dongarra-2014
+linpack100,cray-xmp416-1cpu,1,single,fp64,121,published,CF77 5.0 -Zp -Wd-e68,,,,dongarra-2014
+linpack1000,cray-xmp416-1cpu,1,single,fp64,218,published,best effort,,,,dongarra-2014
+peak,cray-xmp416-1cpu,1,single,fp64,235,published,,,,,dongarra-2014
+linpack100,param8000-64,64,throughput,fp64,23.7,reconstructed,Fortran 3L -:o0,,,,param-64-ceiling
+peak,param8000-256,256,throughput,fp64,1000,published,,,,,kahaner-1996
+sustained,param8000-256,256,throughput,fp64,150,published,,,,,kahaner-1996
+ll7,m4pro-1p,1,single,fp64,40936.2,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,1,cold;speedlimit=?,
+ll7,m4pro-1p,1,single,fp64,40955.3,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,2,sustained,
+ll7,m4pro-10p,10,throughput,fp64,365359.8,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,1,sustained,
+ll7f32,m4pro-1p,1,single,fp32,76787.6,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,1,cold;speedlimit=?,
+ll7f32,m4pro-1p,1,single,fp32,76794.4,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,2,sustained,
+ll7f32,m4pro-10p,10,throughput,fp32,658503.5,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,1,sustained,
+linpack100,m4pro-1p,1,single,fp64,15127.7,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,1,cold;speedlimit=?,
+linpack100,m4pro-1p,1,single,fp64,15143.2,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,2,sustained,
+linpack100,m4pro-10p,10,throughput,fp64,135641.4,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,1,sustained,
+linpack1000,m4pro-1p,1,single,fp64,11930.9,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,1,cold;speedlimit=?,
+linpack1000,m4pro-1p,1,single,fp64,11960.3,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,2,sustained,
+linpack1000,m4pro-10p,10,throughput,fp64,86802.9,measured,Apple clang version 21.0.0 (clang-2100.1.1.101),-O2 -std=c99 -fno-fast-math,1,sustained,

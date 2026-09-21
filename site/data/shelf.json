@@ -1,0 +1,105 @@
+{
+ "_note": "What one person could buy without a licence, FP64. `kind`: linpack100 = Dongarra Table 1 n=100 measured; peak = Dongarra theoretical-peak column; vendor = manufacturer datasheet FP64 peak; arch = computed from documented architecture (reconstructed); measured = this strand's benchmark (artifact 1).",
+ "rows": [
+  {
+   "year": 1987,
+   "box": "Compaq Deskpro 386/20 with 80387",
+   "fp64_mflops": 0.16,
+   "kind": "linpack100",
+   "cite": "dongarra-2014"
+  },
+  {
+   "year": 1990,
+   "box": "Compaq Deskpro 486/33 with 487",
+   "fp64_mflops": 1.4,
+   "kind": "linpack100",
+   "cite": "dongarra-2014"
+  },
+  {
+   "year": 1994,
+   "box": "Intel Pentium 75 MHz",
+   "fp64_mflops": 75,
+   "kind": "peak",
+   "cite": "dongarra-2014",
+   "linpack100": 8.92
+  },
+  {
+   "year": 1996,
+   "box": "Gateway 2000 G6-200, Pentium Pro 200 MHz",
+   "fp64_mflops": 200,
+   "kind": "peak",
+   "cite": "dongarra-2014",
+   "linpack100": 62
+  },
+  {
+   "year": 1999,
+   "box": "Intel Pentium III 550 MHz",
+   "fp64_mflops": 550,
+   "kind": "peak",
+   "cite": "dongarra-2014",
+   "linpack100": 74
+  },
+  {
+   "year": 2000,
+   "box": "AMD Athlon 600 MHz",
+   "fp64_mflops": 1200,
+   "kind": "peak",
+   "cite": "dongarra-2014",
+   "linpack100": 260
+  },
+  {
+   "year": 2003,
+   "box": "Intel Pentium 4 3.0 GHz (Northwood)",
+   "fp64_mflops": 6000,
+   "kind": "peak",
+   "cite": "dongarra-2014",
+   "linpack100": 1571
+  },
+  {
+   "year": 2007,
+   "box": "Intel Core 2 Quad Q6600, 4 cores 2.4 GHz",
+   "fp64_mflops": 38400,
+   "kind": "peak",
+   "cite": "dongarra-2014",
+   "linpack_best": 13130
+  },
+  {
+   "year": 2011,
+   "box": "Intel Core i7-2600K, 4 cores 3.4 GHz, AVX",
+   "fp64_mflops": 108800,
+   "kind": "arch",
+   "cite": "arch-notes",
+   "how": "4 cores × 8 DP flops/cycle (256-bit add + 256-bit mul) × 3.4 GHz"
+  },
+  {
+   "year": 2013,
+   "box": "Nvidia GeForce GTX Titan",
+   "fp64_mflops": 1300000,
+   "kind": "vendor",
+   "cite": "nvidia-titan-2013"
+  },
+  {
+   "year": 2019,
+   "box": "AMD Radeon VII",
+   "fp64_mflops": 3460000,
+   "kind": "vendor",
+   "cite": "amd-radeon-vii"
+  },
+  {
+   "year": 2022,
+   "box": "Nvidia GeForce RTX 4090",
+   "fp64_mflops": 1290000,
+   "kind": "vendor",
+   "cite": "nvidia-4090",
+   "note": "controlled under 3A090 from 2023-11 by TPP at FP8, at 1.29 TFLOPS FP64"
+  },
+  {
+   "year": 2024,
+   "box": "Apple M4 Pro, 10 P-cores (this laptop)",
+   "fp64_mflops": 365360,
+   "kind": "measured",
+   "cite": "param-fp64",
+   "note": "Livermore Loop 7, 10 independent processes; peak by architecture ≈ 720 GFLOPS"
+  }
+ ]
+}

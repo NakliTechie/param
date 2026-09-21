@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The line and the shelf</title>
+<meta name="description" content="Every performance threshold in US computer export controls, 1987–2026, converted to FP64 and set against what a person could buy. India appears on the chart twice.">
+<style>
+:root {
+  --canvas: #fbfaf7;
+  --ink: 20, 18, 14;
+  --ink-100: rgba(var(--ink), 0.92);
+  --ink-70: rgba(var(--ink), 0.70);
+  --ink-50: rgba(var(--ink), 0.50);
+  --ink-30: rgba(var(--ink), 0.30);
+  --ink-12: rgba(var(--ink), 0.12);
+  --ink-06: rgba(var(--ink), 0.06);
+  --accent: #b3421e;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --measure: 38rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --canvas: #16150f; --ink: 244, 241, 232; --accent: #e0714a; }
+}
+:root[data-theme="dark"] { --canvas: #16150f; --ink: 244, 241, 232; --accent: #e0714a; }
+html { background: var(--canvas); color: var(--ink-100); font: 19px/1.55 var(--serif); -webkit-text-size-adjust: 100%; }
+body { margin: 0; padding: 0 16px; }
+main { max-width: var(--measure); margin: 0 auto; padding: 4rem 0 5rem; }
+header h1 { font-size: 2.6rem; line-height: 1.08; font-weight: 500; letter-spacing: -0.01em; margin: 0 0 0.6rem; }
+header .dek { font-size: 1.2rem; color: var(--ink-70); margin: 0 0 0.8rem; }
+header .byline { font: 0.78rem/1.5 var(--mono); color: var(--ink-50); margin: 0; }
+h2 { font-size: 1.35rem; font-weight: 500; margin: 3rem 0 0.8rem; letter-spacing: -0.005em; }
+p { margin: 0 0 1.1rem; }
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--ink-30); text-underline-offset: 0.16em; }
+a:hover { text-decoration-color: var(--accent); }
+figure { margin: 2.2rem -16px; }
+figure.wide { margin-left: calc(50% - 50vw + 16px); margin-right: calc(50% - 50vw + 16px); }
+@media (min-width: 960px) { figure.wide { margin-left: calc((var(--measure) - 900px) / 2); margin-right: calc((var(--measure) - 900px) / 2); } }
+figure svg { width: 100%; height: auto; display: block; }
+figcaption { font: 0.8rem/1.5 var(--mono); color: var(--ink-50); padding: 0.6rem 16px 0; max-width: var(--measure); margin: 0 auto; }
+.grid { stroke: var(--ink-12); stroke-width: 1; }
+.axis { stroke: var(--ink-30); stroke-width: 1; }
+.tick { font: 12px var(--mono); fill: var(--ink-50); }
+.label { font: 12.5px var(--mono); fill: var(--ink-70); }
+.threshold { fill: none; stroke: var(--accent); stroke-width: 2.2; stroke-linejoin: miter; }
+.threshold-label { fill: var(--accent); }
+.chip { fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-dasharray: 5 4; opacity: 0.8; }
+.chip-label { fill: var(--accent); opacity: 0.85; }
+.shelf { fill: none; stroke: var(--ink-70); stroke-width: 1.6; }
+.shelf-pt { fill: var(--canvas); stroke: var(--ink-100); stroke-width: 1.6; }
+.shelf-label { fill: var(--ink-70); }
+.event { fill: var(--accent); }
+table { border-collapse: collapse; width: 100%; font: 0.82rem/1.45 var(--mono); margin: 1rem 0 1.4rem; }
+th, td { text-align: left; padding: 0.35rem 0.6rem 0.35rem 0; vertical-align: top; border-bottom: 1px solid var(--ink-12); }
+th { color: var(--ink-50); font-weight: 500; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+.claim { border-left: 2px solid var(--ink-12); padding-left: 1rem; color: var(--ink-70); }
+.small { font-size: 0.86rem; color: var(--ink-70); }
+sup a { text-decoration: none; color: var(--accent); font: 0.7rem var(--mono); }
+ol.notes { font: 0.82rem/1.5 var(--mono); color: var(--ink-70); padding-left: 1.6rem; }
+ol.notes li { margin-bottom: 0.45rem; }
+footer { margin-top: 4rem; font: 0.78rem/1.6 var(--mono); color: var(--ink-50); }
+footer a { text-decoration-color: var(--ink-12); }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>The line and the shelf</h1>
+  <p class="dek">Every performance threshold in US computer export controls since 1992, converted to FP64 and set against what one person could buy. India is on the chart twice, 38 years apart.</p>
+  <p class="byline">Chirag Patnaik · PARAM strand, artifact 3 · v1.0 · September 2026 · <a href="#sources">sources</a> · <a href="#bench">numbers</a></p>
+</header>
+
+<figure class="wide">
+<!-- chart:start -->
+<svg viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="chart-title chart-desc" font-family="inherit">
+<title id="chart-title">FP64 performance: US export-control thresholds applied to India, and what a person could buy, 1987–2026</title>
+<desc id="chart-desc">Log-scale chart. A stepped line shows the control threshold in force each year, converted to FP64 MFLOPS. A second line shows the fastest FP64 box on the consumer shelf. The consumer line crosses the control line in the early 2000s and stays above it until the 2022 chip rules, which are drawn dashed because their metric is not FP64.</desc>
+<line x1="64" y1="476.0" x2="856" y2="476.0" class="grid"/>
+<text x="56" y="480.0" text-anchor="end" class="tick">0.1 MFLOPS</text>
+<line x1="64" y1="431.2" x2="856" y2="431.2" class="grid"/>
+<text x="56" y="435.2" text-anchor="end" class="tick">1 MFLOPS</text>
+<line x1="64" y1="386.4" x2="856" y2="386.4" class="grid"/>
+<text x="56" y="390.4" text-anchor="end" class="tick">10 MFLOPS</text>
+<line x1="64" y1="341.6" x2="856" y2="341.6" class="grid"/>
+<text x="56" y="345.6" text-anchor="end" class="tick">100 MFLOPS</text>
+<line x1="64" y1="296.8" x2="856" y2="296.8" class="grid"/>
+<text x="56" y="300.8" text-anchor="end" class="tick">1 GFLOPS</text>
+<line x1="64" y1="252.0" x2="856" y2="252.0" class="grid"/>
+<text x="56" y="256.0" text-anchor="end" class="tick">10 GFLOPS</text>
+<line x1="64" y1="207.2" x2="856" y2="207.2" class="grid"/>
+<text x="56" y="211.2" text-anchor="end" class="tick">100 GFLOPS</text>
+<line x1="64" y1="162.4" x2="856" y2="162.4" class="grid"/>
+<text x="56" y="166.4" text-anchor="end" class="tick">1 TFLOPS</text>
+<line x1="64" y1="117.6" x2="856" y2="117.6" class="grid"/>
+<text x="56" y="121.6" text-anchor="end" class="tick">10 TFLOPS</text>
+<line x1="64" y1="72.8" x2="856" y2="72.8" class="grid"/>
+<text x="56" y="76.8" text-anchor="end" class="tick">100 TFLOPS</text>
+<line x1="64" y1="28.0" x2="856" y2="28.0" class="grid"/>
+<text x="56" y="32.0" text-anchor="end" class="tick">1 PFLOPS</text>
+<text x="132.6" y="494" text-anchor="middle" class="tick">1990</text>
+<line x1="132.6" y1="476" x2="132.6" y2="480" class="axis"/>
+<text x="230.6" y="494" text-anchor="middle" class="tick">1995</text>
+<line x1="230.6" y1="476" x2="230.6" y2="480" class="axis"/>
+<text x="328.7" y="494" text-anchor="middle" class="tick">2000</text>
+<line x1="328.7" y1="476" x2="328.7" y2="480" class="axis"/>
+<text x="426.7" y="494" text-anchor="middle" class="tick">2005</text>
+<line x1="426.7" y1="476" x2="426.7" y2="480" class="axis"/>
+<text x="524.7" y="494" text-anchor="middle" class="tick">2010</text>
+<line x1="524.7" y1="476" x2="524.7" y2="480" class="axis"/>
+<text x="622.7" y="494" text-anchor="middle" class="tick">2015</text>
+<line x1="622.7" y1="476" x2="622.7" y2="480" class="axis"/>
+<text x="720.7" y="494" text-anchor="middle" class="tick">2020</text>
+<line x1="720.7" y1="476" x2="720.7" y2="480" class="axis"/>
+<text x="818.8" y="494" text-anchor="middle" class="tick">2025</text>
+<line x1="818.8" y1="476" x2="818.8" y2="480" class="axis"/>
+<line x1="64" y1="476" x2="856" y2="476" class="axis"/>
+<polyline class="threshold" points="171.8,328.6 211.0,328.6 211.0,288.9 251.5,288.9 251.5,283.3 330.3,283.3 330.3,260.4 340.8,260.4 340.8,247.7 351.2,247.7 351.2,232.0 355.8,232.0 355.8,210.4 371.2,210.4 371.2,194.7 452.4,194.7 452.4,165.9 553.7,165.9 553.7,152.5 573.8,152.5 573.8,139.0 614.7,139.0 614.7,119.9 656.4,119.9 656.4,111.2 676.3,111.2 676.3,106.4 697.5,106.4 697.5,94.8 782.4,94.8 782.4,77.7 856.0,77.7"/>
+<polyline class="chip" points="775.0,78.4 856.0,78.4"/>
+<text x="771.7" y="70.4" class="label chip-label">3A090 chips: TPP 4,800 ≈ 75 TFLOPS if FP64 were the fastest precision</text>
+<polyline class="shelf" points="73.8,466.9 132.6,424.7 211.0,347.2 250.2,328.1 309.0,308.4 328.7,293.3 387.5,261.9 465.9,225.8 544.3,205.6 583.5,157.3 701.1,138.2 759.9,157.4 799.1,182.0"/>
+<circle cx="73.8" cy="466.9" r="3.2" class="shelf-pt"><title>1987 Compaq Deskpro 386/20 with 80387: 0.16 MFLOPS FP64 (linpack100)</title></circle>
+<circle cx="132.6" cy="424.7" r="3.2" class="shelf-pt"><title>1990 Compaq Deskpro 486/33 with 487: 1.4 MFLOPS FP64 (linpack100)</title></circle>
+<circle cx="211.0" cy="347.2" r="3.2" class="shelf-pt"><title>1994 Intel Pentium 75 MHz: 75 MFLOPS FP64 (peak)</title></circle>
+<circle cx="250.2" cy="328.1" r="3.2" class="shelf-pt"><title>1996 Gateway 2000 G6-200, Pentium Pro 200 MHz: 200 MFLOPS FP64 (peak)</title></circle>
+<circle cx="309.0" cy="308.4" r="3.2" class="shelf-pt"><title>1999 Intel Pentium III 550 MHz: 550 MFLOPS FP64 (peak)</title></circle>
+<circle cx="328.7" cy="293.3" r="3.2" class="shelf-pt"><title>2000 AMD Athlon 600 MHz: 1.2 GFLOPS FP64 (peak)</title></circle>
+<circle cx="387.5" cy="261.9" r="3.2" class="shelf-pt"><title>2003 Intel Pentium 4 3.0 GHz (Northwood): 6 GFLOPS FP64 (peak)</title></circle>
+<circle cx="465.9" cy="225.8" r="3.2" class="shelf-pt"><title>2007 Intel Core 2 Quad Q6600, 4 cores 2.4 GHz: 38.4 GFLOPS FP64 (peak)</title></circle>
+<circle cx="544.3" cy="205.6" r="3.2" class="shelf-pt"><title>2011 Intel Core i7-2600K, 4 cores 3.4 GHz, AVX: 108.8 GFLOPS FP64 (arch)</title></circle>
+<circle cx="583.5" cy="157.3" r="3.2" class="shelf-pt"><title>2013 Nvidia GeForce GTX Titan: 1.3 TFLOPS FP64 (vendor)</title></circle>
+<circle cx="701.1" cy="138.2" r="3.2" class="shelf-pt"><title>2019 AMD Radeon VII: 3.46 TFLOPS FP64 (vendor)</title></circle>
+<circle cx="759.9" cy="157.4" r="3.2" class="shelf-pt"><title>2022 Nvidia GeForce RTX 4090: 1.29 TFLOPS FP64 (vendor)</title></circle>
+<circle cx="799.1" cy="182.0" r="3.2" class="shelf-pt"><title>2024 Apple M4 Pro, 10 P-cores (this laptop): 365.36 GFLOPS FP64 (measured)</title></circle>
+<circle cx="88.9" cy="313.7" r="4.5" class="event"/>
+<text x="97.3" y="303.7" class="label">1987: Cray X-MP/24 refused to India (≈420 MFLOPS); X-MP/14 permitted with safeguards</text>
+<circle cx="819.4" cy="78.4" r="4.5" class="event"/>
+<text x="816.8" y="100.4" text-anchor="end" class="label">2025: India capped under the AI Diffusion rule (Jan–May)</text>
+<text x="491.4" y="224.7" class="label threshold-label">control threshold in force for India, FP64-equivalent</text>
+<text x="336.5" y="327.3" class="label shelf-label">fastest FP64 box on the consumer shelf</text>
+<text x="73.8" y="154.5" class="label shelf-label">1987: Compaq 386/20 at 0.16 MFLOPS</text>
+</svg>
+<!-- chart:end -->
+<figcaption>Log scale, FP64-equivalent MFLOPS. Solid line: the control threshold in force for India, converted as described below. Dashed: the 2022 chip rule, which is not an FP64 measure and is drawn only to show where it sits. Points: the fastest FP64 box a person could buy that year. Hover a point for its source.</figcaption>
+</figure>
+
+<h2>What the chart is and is not</h2>
+<p>The two lines are not measured in the same unit, and a single axis through both is a device. The 1990s regimes counted composite theoretical performance on general-purpose 64-bit arithmetic. The 2006 rules replaced that with a weighted count of 64-bit floating-point operations. The 2022 rules count multiply-accumulates at whatever precision the chip runs fastest, which for a modern accelerator is 8-bit integer, not 64-bit floating point. A reader who catches that before the author admits it stops trusting the rest, so it is stated here first.</p>
+<p>The one continuous thing underneath is FP64: the arithmetic a Cray did, a transputer did, and a laptop core still does. Every threshold on the chart has been converted to FP64 as follows. Millions of theoretical operations per second (MTOPS) count as MFLOPS one for one, because the CTP formula's word-length factor for a 64-bit processor is 1.0.<sup><a href="#n1">1</a></sup> Weighted TeraFLOPS (WT) are divided by the 0.9 weight the rule assigns to vector processors; the 0.3 weight for other processors would put the line three times higher.<sup><a href="#n2">2</a></sup> The 2022 chip threshold, TPP 4,800, is divided by 64 bits to give 75 TFLOPS, the FP64 rate that would trip it if FP64 were the chip's fastest precision. No shipping chip is built that way, so the dashed line is an upper bound on where the rule sits in FP64 terms, not a measurement of anything.<sup><a href="#n3">3</a></sup></p>
+<p>Threshold values come from the regulations and the Federal Register notices that changed them, not from summaries. The consumer-shelf points come from Jack Dongarra's LINPACK report where a measured or theoretical FP64 figure exists, from manufacturer datasheets for graphics cards, and from this strand's own benchmark for the current laptop. Each point carries its source class in the data file.</p>
+
+<h2>1987</h2>
+<p>In 1986 India asked to buy a Cray X-MP/24 for the National Centre for Medium Range Weather Forecasting. The stated use was monsoon prediction. Washington declined the two-processor machine and offered the single-processor X-MP/14 instead, on conditions: civilian use only, no use for nuclear-weapons research, and US personnel with access to the installation. India objected to the personnel condition, then withdrew the X-MP/24 request days before Rajiv Gandhi's visit to Washington and took the X-MP/14. The agreement was signed on 9 October 1987 by Ambassador John Gunther Dean and Foreign Secretary K. P. S. Menon. India became the first country outside the Western alliance and Aramco to be cleared for the machine.<sup><a href="#n4">4</a></sup></p>
+<p>An X-MP CPU ran a 9.5 nanosecond clock and 64-bit words.<sup><a href="#n5">5</a></sup> Dongarra's table lists the single-CPU X-MP/14se at 53 MFLOPS on LINPACK 100, 184 MFLOPS on LINPACK 1000, and a theoretical peak of 210 MFLOPS, all FP64.<sup><a href="#n6">6</a></sup> The refused X-MP/24 had two such CPUs. That is the point marked at 420 MFLOPS on the chart, above every consumer box of its decade by three orders of magnitude.</p>
+
+<h2>What India built instead</h2>
+<p>C-DAC was set up in 1988. Its first machine, PARAM 8000, was delivered as a 64-node system in August 1991. Each node was an Inmos T800-class transputer, a 32-bit microprocessor with an on-chip 64-bit floating-point unit and four serial links, wired through a reconfigurable interconnect.<sup><a href="#n7">7</a></sup></p>
+<p>The published numbers for that hardware are small. Dongarra lists a single 20 MHz T800 under Fortran at 0.37 MFLOPS on LINPACK 100, FP64.<sup><a href="#n6">6</a></sup> Inmos's own technical note gives 1.5 MFLOPS for the T800-20 on Livermore Loop 7, but that figure is single-length, 32-bit, and is labelled as such wherever it appears in this strand.<sup><a href="#n8">8</a></sup> Sixty-four T800s at 0.37 MFLOPS each is 23.7 MFLOPS if every node solves its own system and none of them talk, which is a ceiling, not a benchmark. C-DAC's own figures for a 256-node machine were a theoretical 1 GFLOPS and a sustained 100 to 200 MFLOPS; those come to us through Kahaner's 1996 survey and are recorded here as reported, not as measured.<sup><a href="#n9">9</a></sup></p>
+<p>Two claims travel with PARAM 8000 in almost every account. One is that it was 28 times the power of the Cray India was refused, for the same $10 million. The other is that a prototype came second only to a US machine at a supercomputing show in Zurich in 1990. Both originate with C-DAC or its supporters. The first appears in V. Rajaraman's 1999 book; the second in a 1998 magazine profile, and Wikipedia's own editors note that the event cannot be attested beyond that article.<sup><a href="#n10">10</a></sup> They are interesting as claims. They do not appear in any table on this site.</p>
+<p>The documented outcome is the one that matters for the argument. The machine sold. C-DAC's accounts and contemporary press list installations in Germany, the United Kingdom and Russia, including a system for ICAD Moscow in 1991, at a list price around $350,000.<sup><a href="#n11">11</a></sup> A denial produced a domestic alternative at a fraction of the price, and the alternative was then exported to countries that ran the control regime. That fact sits uncomfortably with both sides of the current argument about accelerators, and it is rarely to hand when that argument is made.</p>
+
+<h2>The line, 1992 to 2023</h2>
+<p>Composite theoretical performance, CTP, became the yardstick in the early 1990s. Commerce defined a high-performance computer as 195 MTOPS in 1992 and 1,500 MTOPS in 1994.<sup><a href="#n12">12</a></sup> In January 1996 the United States sorted the world into four computer tiers. India, with China, Russia and Pakistan, was Tier 3: no licence below 2,000 MTOPS, a licence exception to civilian end-users up to 7,000, and a licence above that.<sup><a href="#n13">13</a></sup> After the May 1998 nuclear tests, exports above 2,000 MTOPS to listed Indian entities carried a presumption of denial.<sup><a href="#n14">14</a></sup></p>
+<p>Then the line moved, repeatedly. 6,500 MTOPS in February 2000. 12,500 in August 2000. 28,000 in February 2001. 85,000 in May 2001. 190,000 in March 2002.<sup><a href="#n15">15</a></sup> Five increases in 25 months, each justified in the Federal Register by the availability of the hardware below it. In 2006 MTOPS was retired for Adjusted Peak Performance, a weighted count of 64-bit floating-point operations, and the control level for a digital computer became 0.75 Weighted TeraFLOPS.<sup><a href="#n16">16</a></sup> That level went to 1.5 WT in 2011, 3.0 in 2012, 8.0 in 2014, 12.5 in 2016, 16 in 2017, 29 in 2018 and 70 in 2023.<sup><a href="#n17">17</a></sup></p>
+<p>Against that line, the shelf. A 1996 Pentium Pro had a theoretical FP64 peak of 200 MFLOPS, over the 1992 definition of a supercomputer within four years. A 2001 Athlon at 1.4 GHz peaked at 2,800 MFLOPS, over the 1996 Tier 3 line within five. A 2007 Core 2 Quad, 38.4 GFLOPS, cleared the 12,500 and 28,000 MTOPS lines of 2000 and 2001. A 2011 Core i7 at 108.8 GFLOPS cleared the 85,000 line after ten years. A 2013 GeForce GTX Titan, sold to anyone with $999, offered 1.3 TFLOPS of double precision and cleared both the 190,000 MTOPS line of 2002 and the 0.75 WT line of 2006. A 2019 Radeon VII at 3.46 TFLOPS cleared the 1.5 and 3.0 WT lines.<sup><a href="#n18">18</a></sup></p>
+<p>Then the pattern breaks, and the break is the finding. No consumer part has cleared the 8.0 WT line of 2014 in FP64. Consumer graphics silicon since 2019 runs double precision at a small fraction of single, between a sixteenth and a sixty-fourth depending on the vendor; the 2022 RTX 4090 offers 1.29 TFLOPS FP64, less than the 2019 Radeon. The ten performance cores of the M4 Pro this page was benchmarked on reach 0.37 TFLOPS on Livermore Loop 7, and about 0.72 TFLOPS if each core's four 128-bit SIMD pipes are counted at full FMA rate, which Apple does not publish and this piece treats as an estimate. In the unit the old regime measured, the consumer shelf stopped climbing around 2019 while the line kept rising to 78 TFLOPS. Measured in FP64, the interval between drawing a line and crossing it did not keep shrinking. It went to infinity.</p>
+
+<h2>The line, 2022 to now</h2>
+<p>The regime that followed does not measure FP64. The October 2022 rule created ECCN 3A090 for chips with a total processing performance of 4,800 or more, together with an interconnect of 600 GB/s or more; TPP is two times multiply-accumulates per second times the bit length of the operation, taken at the chip's fastest precision.<sup><a href="#n3">3</a></sup> The November 2023 revision dropped the interconnect test and added performance density.<sup><a href="#n19">19</a></sup> The RTX 4090 had been on shelves since 12 October 2022. At 8-bit precision its TPP is above 4,800. Under the 2023 revision it was a controlled item with 1.29 TFLOPS of double precision, and Nvidia shipped a reduced 4090D for China, as widely reported in December 2023. Measured in the regime's own unit, the consumer shelf was above the line thirteen months before the line was drawn where it could catch it.</p>
+<p>India's second appearance is at the other end of the chart. The Framework for Artificial Intelligence Diffusion, published 15 January 2025, extended the licence requirement for 3A090.a chips to every destination and sorted countries into three tiers. India was in the second, with a per-country ceiling on controlled compute through 2027.<sup><a href="#n20">20</a></sup> The framework was rescinded in May 2025 before its compliance date, and the tiers with it; the chip thresholds stayed.<sup><a href="#n21">21</a></sup> In January 2026 the review policy for chips below TPP 21,000 destined for China moved from presumption of denial to case-by-case.<sup><a href="#n22">22</a></sup> The argument made in 1987 about a weather computer, that a general-purpose machine of a certain speed is a weapon input and its buyer must accept conditions, was made again in 2025 about a rack of accelerators and the same country, for four months.</p>
+
+<h2>Numbers</h2>
+<p id="bench">The table below is generated from this strand's benchmark repository. Measured cells were run on this laptop with the compiler and flags shown; published cells resolve to a citation; the one reconstructed cell is labelled. FP32 figures carry the label inside the cell. Full data, harness and sources: <a href="https://github.com/NakliTechie/param-fp64">param-fp64</a>.</p>
+<!-- bench:start -->
+<table><thead><tr><th>machine</th><th>mode</th><th>thermal</th>
+<th class=n>LL7</th>
+<th class=n>LL7 (fp32)</th>
+<th class=n>LINPACK 100</th>
+<th class=n>LINPACK 1000</th>
+<th class=n>peak</th>
+<th class=n>sustained</th>
+</tr></thead><tbody>
+<tr><td>t800-30</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>2.25 <span class=small>(fp32)</span> ᵖ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>t800-20</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>1.50 <span class=small>(fp32)</span> ᵖ</td>
+<td class=n>0.37 ᵖ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>t414-20</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>0.09 <span class=small>(fp32)</span> ᵖ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>vax11-780-fpa</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>0.54 <span class=small>(fp32)</span> ᵖ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>cray-xmp14se</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>53 ᵖ</td>
+<td class=n>184 ᵖ</td>
+<td class=n>210 ᵖ</td>
+<td class=n>—</td>
+</tr>
+<tr><td>cray-xmp416-1cpu</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>121 ᵖ</td>
+<td class=n>218 ᵖ</td>
+<td class=n>235 ᵖ</td>
+<td class=n>—</td>
+</tr>
+<tr><td>param8000-64</td><td>throughput</td><td></td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>24 ʳ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>param8000-256</td><td>throughput</td><td></td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>1,000 ᵖ</td>
+<td class=n>150 ᵖ</td>
+</tr>
+<tr><td>m4pro-1p</td><td>single</td><td>cold</td>
+<td class=n>40,936</td>
+<td class=n>76,788 <span class=small>(fp32)</span></td>
+<td class=n>15,128</td>
+<td class=n>11,931</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>m4pro-1p</td><td>single</td><td>sustained</td>
+<td class=n>40,955</td>
+<td class=n>76,794 <span class=small>(fp32)</span></td>
+<td class=n>15,143</td>
+<td class=n>11,960</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>m4pro-10p</td><td>throughput</td><td>sustained</td>
+<td class=n>365,360</td>
+<td class=n>658,504 <span class=small>(fp32)</span></td>
+<td class=n>135,641</td>
+<td class=n>86,803</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+</tbody></table>
+<p class=small>MFLOPS, FP64 unless labelled. ᵖ published · ʳ reconstructed · unmarked measured. Measured cells: Apple clang version 21.0.0 (clang-2100.1.1.101), flags <code>-O2 -std=c99 -fno-fast-math</code>, median of 2 runs for sustained cells; throughput = 10 independent processes, MFLOPS summed.</p>
+<!-- bench:end -->
+<p class="small">A word on the ratios these invite. On LINPACK 100, FP64, one M4 Pro performance core against one T800-20 is a factor of about forty thousand; against one X-MP/14se CPU, about three hundred. On Livermore Loop 7 at 32-bit, the precision Inmos published, the factor over a T800-20 is about fifty thousand. The X-MP figure is the more instructive one: the class of machine that was a diplomatic question in 1987 is outrun three hundred to one by a single core of a laptop bought at retail, in the same arithmetic.</p>
+
+<h2>Sources</h2>
+<ol class="notes" id="sources">
+<li id="n1">Category 4 Technical Note on CTP, 15 CFR 774 Supp. 1 (pre-2006 text): CTP = R × L, L = 1/3 + WL/96, so L = 1.0 at a 64-bit word length. Values in MTOPS are therefore read as MFLOPS for a 64-bit floating-point processor. As implemented by 61 FR 2099 (25 Jan 1996).</li>
+<li id="n2">Technical Note on "Adjusted Peak Performance", 15 CFR 774 Supp. 1, Category 4, as in force 1 Sept 2026 (eCFR): "APP" = Σ W<sub>i</sub> × R<sub>i</sub>, R the peak 64-bit floating-point rate, W = 0.9 for vector processors and 0.3 otherwise.</li>
+<li id="n3">87 FR 62186 (13 Oct 2022, effective 7 Oct 2022), ECCN 3A090.a: "aggregate bidirectional transfer rate … of 600 Gbyte/s or more" and "bit length per operation multiplied by processing performance measured in TOPS … of 4800 or more." The TPP technical note in 88 FR 73458: "the 'TPP' threshold of 4800 can be met with 600 tera integer operations … at 8 bits or 300 tera FLOPS … at 16 bits."</li>
+<li id="n4">UPI, "U.S. signs first sale of supercomputer to non-Western nation", 9 October 1987. <a href="https://www.upi.com/Archives/1987/10/09/US-signs-first-sale-of-supercomputer-to-non-Western-nation/1591560750400/">upi.com</a>.</li>
+<li id="n5">Cray Research, <em>The CRAY X-MP Series of Computer Systems</em>, 1985 (MP-0102): X-MP/1 "9.5 nsec clock cycle time", "64-bit words". Computer History Museum, <a href="http://s3data.computerhistory.org/brochures/cray.x-mp.1985.102646183.pdf">PDF</a>. The brochure states no MFLOPS figure; 2 results per clock at 105.3 MHz gives the 210 MFLOPS peak Dongarra prints.</li>
+<li id="n6">J. J. Dongarra, <em>Performance of Various Computers Using Standard Linear Equations Software</em>, CS-89-85, edition of 15 June 2014, Table 1. <a href="https://www.netlib.org/benchmark/performance.pdf">netlib.org</a>. Rows: "Cray X-MP/14se (10 ns) cf77 3.0 53 184 210"; "Inmos T800 (20 MHz) Fortran 3L -:o0 .37". Full precision, 64-bit.</li>
+<li id="n7">C-DAC's founding in 1988 and the node description are from Wikipedia, <em>PARAM</em>, citing D. K. Kahaner, "Parallel computing in India", <em>IEEE Parallel &amp; Distributed Technology</em> 4(3), 1996, doi:10.1109/88.532134, as cited in Wikipedia, <em>PARAM</em> (fetched 21 Sept 2026). The paper itself was not read for this piece; the figures are relayed through that citation.</li>
+<li id="n8">Inmos Technical Note 6, <em>IMS T800 Architecture</em>, January 1988: "The IMS T800-30 achieves a speed of 2.25 Mflops on this benchmark; for comparison the IMS T800-20 achieves 1.5 Mflops, the T414-20 achieves 0.09 Mflops and a VAX 11/780 (with fpa) achieves 0.54 Mflops." The accompanying code uses the single-length load instructions. <a href="http://www.transputer.net/tn/06/tn06.html">transputer.net</a>.</li>
+<li id="n9">Kahaner 1996, as in note 7: "A 256-node machine had a theoretical performance of 1 GFLOPS, however in practice had a sustained performance of 100–200 MFLOPS."</li>
+<li id="n10">V. Rajaraman, <em>Super computers</em>, Universities Press (India), 1999, p. 75; <em>Outlook Business</em>, "God, Man And Machine", 1 July 1998; both as cited in Wikipedia, <em>PARAM</em>, including the editorial note on the Zurich claim.</li>
+<li id="n11"><em>The Hindu Business Line</em>, 26 Feb 2001; C-DAC, "From PARAM 8000 to PARAM 10000" (ICAD Moscow); <em>Washington Post</em> archive on the $350,000 price and 14 buyers; all as cited in Wikipedia, <em>PARAM</em>. C-DAC is the source for its own export list.</li>
+<li id="n12">Congressional Research Service, RL31175, <em>High Performance Computers and Export Control Policy: Issues for Congress</em>: "In 1992, the U.S. Commerce Department defined an HPC as 195 MTOPS … revised in 1994 (1,500 MTOPS)". Secondary; the 1992 and 1994 notices predate the online Federal Register.</li>
+<li id="n13">61 FR 2099 (25 Jan 1996): Tier 3 "General License G-DEST for computers less than or equal to 2,000 MTOPS"; "G-CTP for computers greater than 2,000 MTOPS but less than or equal to 7,000 MTOPS"; validated licence above 7,000.</li>
+<li id="n14">63 FR 64322 (19 Nov 1998), India and Pakistan Sanctions: "presumption of denial for all applications for exports and reexports of computers having a CTP greater than 2,000 MTOPS destined to Indian and Pakistani entities determined to be involved in nuclear…".</li>
+<li id="n15">64 FR 42009 (3 Aug 1999; 2,000 → 6,500 military, 7,000 → 12,300 civilian, effective Feb 2000); 65 FR 12919 (10 Mar 2000; 12,500 and 20,000, effective 14 Aug 2000); 65 FR 60852 (13 Oct 2000; 28,000, civil–military distinction removed, effective 26 Feb 2001); 66 FR 5443 (19 Jan 2001; 85,000, effective 19 May 2001); 67 FR 10608 (8 Mar 2002; 190,000, effective 3 Mar 2002).</li>
+<li id="n16">71 FR 20876 (24 Apr 2006), <em>Implementation of New Formula for Calculating Computer Performance: Adjusted Peak Performance (APP)</em>: 4A003.b at 0.75 WT.</li>
+<li id="n17">76 FR 36986 (24 Jun 2011; 0.75 → 1.5 WT); 77 FR 39354 (2 Jul 2012; 3.0); 79 FR 45288 (4 Aug 2014; 8.0); 81 FR 64656 (20 Sept 2016; 12.5); 82 FR 38764 (15 Aug 2017; 16, effective 25 Sept 2017); 83 FR 53742 (24 Oct 2018; 29); 88 FR 12108 (24 Feb 2023; 70). Current text confirmed in eCFR as of 1 Sept 2026.</li>
+<li id="n18">Dongarra 2014, Table 1: "Gateway 2000 G6-200 PentiumPro … 62 … 200"; "AMD Athlon Thunderbird 1.4GHz … 704 … 2800"; "Intel Core 2 Q6600 … (4 core, 2.4 GHz) … 13130 … 38400". Core i7-2600K: 4 cores × 8 FP64 flops per cycle (256-bit AVX add and multiply) × 3.4 GHz = 108.8 GFLOPS, computed from the architecture, not measured. GTX Titan: Nvidia newsroom, 19 Feb 2013, "4.5 teraflops of single-precision and 1.3 teraflops of double-precision". Radeon VII: AMD figure of 3.46 TFLOPS FP64 as reported by Techgage, Feb 2019. RTX 4090: 82.58 TFLOPS FP32 at a 1:64 FP64 ratio = 1.29 TFLOPS, per the Ada Lovelace architecture documentation as reported by TechPowerUp. M4 Pro: this strand's benchmark, see the table above.</li>
+<li id="n19">88 FR 73458 (25 Oct 2023, effective 17 Nov 2023), ECCN 3A090.a: "a 'total processing performance' of 4800 or more, or … 1600 or more and a 'performance density' of 5.92 or more"; 3A090.b added.</li>
+<li id="n20">90 FR 4544 (15 Jan 2025, effective 13 Jan 2025), <em>Framework for Artificial Intelligence Diffusion</em>. India's tier and the per-country allocation are stated in the rule's country lists and §740.29.</li>
+<li id="n21">BIS announced the rescission of the AI Diffusion rule on 13 May 2025, ahead of its 15 May compliance date; reported by Kirkland &amp; Ellis, 27 May 2025, among others. Secondary.</li>
+<li id="n22">91 FR 1684 (15 Jan 2026), <em>Revision to License Review Policy for Advanced Computing Commodities</em>: case-by-case review for chips with TPP below 21,000 and DRAM bandwidth below 6,500 GB/s to China and Macau.</li>
+</ol>
+
+<footer>
+<p>PARAM strand: <a href="https://github.com/NakliTechie/param-fp64">artifact 1, the FP64 benchmark</a> · this piece is artifact 3 · artifact 2, a 64-node PARAM 8000 in a browser tab, is in progress at <a href="https://loom.naklitechie.com">loom.naklitechie.com</a>. Chart data: <a href="data/thresholds.json">thresholds.json</a>, <a href="data/shelf.json">shelf.json</a>. Corrections to the sources above are welcome as issues on the repository. v1.0.</p>
+</footer>
+</main>
+</body>
+</html>
