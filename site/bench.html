@@ -1,0 +1,98 @@
+<table><thead><tr><th>machine</th><th>mode</th><th>thermal</th>
+<th class=n>LL7</th>
+<th class=n>LL7 (fp32)</th>
+<th class=n>LINPACK 100</th>
+<th class=n>LINPACK 1000</th>
+<th class=n>peak</th>
+<th class=n>sustained</th>
+</tr></thead><tbody>
+<tr><td>t800-30</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>2.25 <span class=small>(fp32)</span> ᵖ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>t800-20</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>1.50 <span class=small>(fp32)</span> ᵖ</td>
+<td class=n>0.37 ᵖ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>t414-20</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>0.09 <span class=small>(fp32)</span> ᵖ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>vax11-780-fpa</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>0.54 <span class=small>(fp32)</span> ᵖ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>cray-xmp14se</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>53 ᵖ</td>
+<td class=n>184 ᵖ</td>
+<td class=n>210 ᵖ</td>
+<td class=n>—</td>
+</tr>
+<tr><td>cray-xmp416-1cpu</td><td>single</td><td></td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>121 ᵖ</td>
+<td class=n>218 ᵖ</td>
+<td class=n>235 ᵖ</td>
+<td class=n>—</td>
+</tr>
+<tr><td>param8000-64</td><td>throughput</td><td></td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>24 ʳ</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>param8000-256</td><td>throughput</td><td></td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>—</td>
+<td class=n>1,000 ᵖ</td>
+<td class=n>150 ᵖ</td>
+</tr>
+<tr><td>m4pro-1p</td><td>single</td><td>cold</td>
+<td class=n>42,197</td>
+<td class=n>78,107 <span class=small>(fp32)</span></td>
+<td class=n>15,583</td>
+<td class=n>12,361</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>m4pro-1p</td><td>single</td><td>sustained</td>
+<td class=n>41,969</td>
+<td class=n>77,895 <span class=small>(fp32)</span></td>
+<td class=n>15,528</td>
+<td class=n>12,271</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+<tr><td>m4pro-10p</td><td>throughput</td><td>sustained</td>
+<td class=n>373,233</td>
+<td class=n>695,722 <span class=small>(fp32)</span></td>
+<td class=n>145,218</td>
+<td class=n>99,970</td>
+<td class=n>—</td>
+<td class=n>—</td>
+</tr>
+</tbody></table>
+<p class=small>MFLOPS, FP64 unless labelled. ᵖ published · ʳ reconstructed · unmarked measured. Measured cells: Apple clang version 21.0.0 (clang-2100.1.1.101), flags <code>-O2 -std=c99 -fno-fast-math</code>, median of 5 runs for sustained cells; throughput = 10 independent processes, MFLOPS summed.</p>

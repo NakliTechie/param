@@ -33,6 +33,7 @@ for m, mode, th in keys:
 meas = [r for r in rows if r["source"] == "measured"]
 h.append("</tbody></table>")
 h.append(f"<p class=small>MFLOPS, FP64 unless labelled. ᵖ published · ʳ reconstructed · unmarked measured. Measured cells: {meas[0]['compiler']}, flags <code>{meas[0]['flags']}</code>, median of {max(int(r['runs']) for r in meas)} runs for sustained cells; throughput = {max(int(r['cores']) for r in meas)} independent processes, MFLOPS summed.</p>" if meas else "")
+(ROOT / "site/bench.html").write_text("\n".join(h) + "\n")   # fragment, embedded by the emulator's landing page
 p = ROOT / "site/index.html"; s = p.read_text()
 s = re.sub(r"<!-- bench:start -->.*?<!-- bench:end -->", "<!-- bench:start -->\n" + "\n".join(h) + "\n<!-- bench:end -->", s, flags=re.S)
 p.write_text(s); print(f"bench table: {len(rows)} rows")

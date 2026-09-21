@@ -77,6 +77,7 @@ out.append(f'<text x="{x(2026.7):.1f}" y="{y(75e6)-8:.1f}" text-anchor="end" cla
 out.append('</svg>')
 svg = "\n".join(out)
 
+(ROOT / "site/chart.svg").write_text(svg + "\n")   # standalone copy, embedded by the emulator's landing page
 html_path = ROOT / "site/index.html"
 h = html_path.read_text()
 new = re.sub(r"<!-- chart:start -->.*?<!-- chart:end -->", "<!-- chart:start -->\n" + svg + "\n<!-- chart:end -->", h, flags=re.S)
