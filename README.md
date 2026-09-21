@@ -20,3 +20,12 @@ Threshold values come from the regulations and Federal Register notices themselv
 ```
 python3 scripts/build_chart.py && python3 scripts/build_bench.py
 ```
+
+## Deploy
+
+Static-assets Worker `param` on the naklitechie Cloudflare account, custom domain `param.naklitechie.com`, no build command. Two ways to keep it current from GitHub:
+
+1. **Workers Builds (preferred — Cloudflare pulls from GitHub).** Dashboard → Workers & Pages → `param` → Settings → Build → connect `NakliTechie/param`, branch `main`, build command empty, deploy command `npx wrangler deploy`. One-time console step; needs a signed-in session.
+2. **GitHub Actions (fallback — GitHub pushes to Cloudflare).** `.github/workflows/deploy.yml`, gated on repository variable `DEPLOY_VIA_ACTIONS=true` and secret `CLOUDFLARE_API_TOKEN`. Use one path, not both.
+
+Manual: `npx wrangler deploy` from a machine logged into the right account (`account_id` is pinned in `wrangler.jsonc`).
