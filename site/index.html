@@ -34,9 +34,8 @@ h2 { font-size: 1.35rem; font-weight: 500; margin: 3rem 0 0.8rem; letter-spacing
 p { margin: 0 0 1.1rem; }
 a { color: inherit; text-decoration: underline; text-decoration-color: var(--ink-30); text-underline-offset: 0.16em; }
 a:hover { text-decoration-color: var(--accent); }
-figure { margin: 2.2rem -16px; }
-figure.wide { margin-left: calc(50% - 50vw + 16px); margin-right: calc(50% - 50vw + 16px); }
-@media (min-width: 960px) { figure.wide { margin-left: calc((var(--measure) - 900px) / 2); margin-right: calc((var(--measure) - 900px) / 2); } }
+figure { margin: 2.2rem 0; }
+figure.wide { width: min(900px, calc(100vw - 32px)); margin-left: calc(50% - min(900px, calc(100vw - 32px)) / 2); }
 figure svg { width: 100%; height: auto; display: block; }
 figcaption { font: 0.8rem/1.5 var(--mono); color: var(--ink-50); padding: 0.6rem 16px 0; max-width: var(--measure); margin: 0 auto; }
 .grid { stroke: var(--ink-12); stroke-width: 1; }
@@ -51,6 +50,7 @@ figcaption { font: 0.8rem/1.5 var(--mono); color: var(--ink-50); padding: 0.6rem
 .shelf-pt { fill: var(--canvas); stroke: var(--ink-100); stroke-width: 1.6; }
 .shelf-label { fill: var(--ink-70); }
 .event { fill: var(--accent); }
+.leader { stroke: var(--ink-30); stroke-width: 1; }
 table { border-collapse: collapse; width: 100%; font: 0.82rem/1.45 var(--mono); margin: 1rem 0 1.4rem; }
 th, td { text-align: left; padding: 0.35rem 0.6rem 0.35rem 0; vertical-align: top; border-bottom: 1px solid var(--ink-12); }
 th { color: var(--ink-50); font-weight: 500; }
@@ -77,69 +77,71 @@ footer a { text-decoration-color: var(--ink-12); }
 <svg viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="chart-title chart-desc" font-family="inherit">
 <title id="chart-title">FP64 performance: US export-control thresholds applied to India, and what a person could buy, 1987–2026</title>
 <desc id="chart-desc">Log-scale chart. A stepped line shows the control threshold in force each year, converted to FP64 MFLOPS. A second line shows the fastest FP64 box on the consumer shelf. The consumer line crosses the control line in the early 2000s and stays above it until the 2022 chip rules, which are drawn dashed because their metric is not FP64.</desc>
-<line x1="64" y1="476.0" x2="856" y2="476.0" class="grid"/>
-<text x="56" y="480.0" text-anchor="end" class="tick">0.1 MFLOPS</text>
-<line x1="64" y1="431.2" x2="856" y2="431.2" class="grid"/>
-<text x="56" y="435.2" text-anchor="end" class="tick">1 MFLOPS</text>
-<line x1="64" y1="386.4" x2="856" y2="386.4" class="grid"/>
-<text x="56" y="390.4" text-anchor="end" class="tick">10 MFLOPS</text>
-<line x1="64" y1="341.6" x2="856" y2="341.6" class="grid"/>
-<text x="56" y="345.6" text-anchor="end" class="tick">100 MFLOPS</text>
-<line x1="64" y1="296.8" x2="856" y2="296.8" class="grid"/>
-<text x="56" y="300.8" text-anchor="end" class="tick">1 GFLOPS</text>
-<line x1="64" y1="252.0" x2="856" y2="252.0" class="grid"/>
-<text x="56" y="256.0" text-anchor="end" class="tick">10 GFLOPS</text>
-<line x1="64" y1="207.2" x2="856" y2="207.2" class="grid"/>
-<text x="56" y="211.2" text-anchor="end" class="tick">100 GFLOPS</text>
-<line x1="64" y1="162.4" x2="856" y2="162.4" class="grid"/>
-<text x="56" y="166.4" text-anchor="end" class="tick">1 TFLOPS</text>
-<line x1="64" y1="117.6" x2="856" y2="117.6" class="grid"/>
-<text x="56" y="121.6" text-anchor="end" class="tick">10 TFLOPS</text>
-<line x1="64" y1="72.8" x2="856" y2="72.8" class="grid"/>
-<text x="56" y="76.8" text-anchor="end" class="tick">100 TFLOPS</text>
-<line x1="64" y1="28.0" x2="856" y2="28.0" class="grid"/>
-<text x="56" y="32.0" text-anchor="end" class="tick">1 PFLOPS</text>
-<text x="132.6" y="494" text-anchor="middle" class="tick">1990</text>
-<line x1="132.6" y1="476" x2="132.6" y2="480" class="axis"/>
-<text x="230.6" y="494" text-anchor="middle" class="tick">1995</text>
-<line x1="230.6" y1="476" x2="230.6" y2="480" class="axis"/>
-<text x="328.7" y="494" text-anchor="middle" class="tick">2000</text>
-<line x1="328.7" y1="476" x2="328.7" y2="480" class="axis"/>
-<text x="426.7" y="494" text-anchor="middle" class="tick">2005</text>
-<line x1="426.7" y1="476" x2="426.7" y2="480" class="axis"/>
-<text x="524.7" y="494" text-anchor="middle" class="tick">2010</text>
-<line x1="524.7" y1="476" x2="524.7" y2="480" class="axis"/>
-<text x="622.7" y="494" text-anchor="middle" class="tick">2015</text>
-<line x1="622.7" y1="476" x2="622.7" y2="480" class="axis"/>
-<text x="720.7" y="494" text-anchor="middle" class="tick">2020</text>
-<line x1="720.7" y1="476" x2="720.7" y2="480" class="axis"/>
-<text x="818.8" y="494" text-anchor="middle" class="tick">2025</text>
-<line x1="818.8" y1="476" x2="818.8" y2="480" class="axis"/>
-<line x1="64" y1="476" x2="856" y2="476" class="axis"/>
-<polyline class="threshold" points="171.8,328.6 211.0,328.6 211.0,288.9 251.5,288.9 251.5,283.3 330.3,283.3 330.3,260.4 340.8,260.4 340.8,247.7 351.2,247.7 351.2,232.0 355.8,232.0 355.8,210.4 371.2,210.4 371.2,194.7 452.4,194.7 452.4,165.9 553.7,165.9 553.7,152.5 573.8,152.5 573.8,139.0 614.7,139.0 614.7,119.9 656.4,119.9 656.4,111.2 676.3,111.2 676.3,106.4 697.5,106.4 697.5,94.8 782.4,94.8 782.4,77.7 856.0,77.7"/>
-<polyline class="chip" points="775.0,78.4 856.0,78.4"/>
-<text x="771.7" y="70.4" class="label chip-label">3A090 chips: TPP 4,800 ≈ 75 TFLOPS if FP64 were the fastest precision</text>
-<polyline class="shelf" points="73.8,466.9 132.6,424.7 211.0,347.2 250.2,328.1 309.0,308.4 328.7,293.3 387.5,261.9 465.9,225.8 544.3,205.6 583.5,157.3 701.1,138.2 759.9,157.4 799.1,182.0"/>
-<circle cx="73.8" cy="466.9" r="3.2" class="shelf-pt"><title>1987 Compaq Deskpro 386/20 with 80387: 0.16 MFLOPS FP64 (linpack100)</title></circle>
-<circle cx="132.6" cy="424.7" r="3.2" class="shelf-pt"><title>1990 Compaq Deskpro 486/33 with 487: 1.4 MFLOPS FP64 (linpack100)</title></circle>
-<circle cx="211.0" cy="347.2" r="3.2" class="shelf-pt"><title>1994 Intel Pentium 75 MHz: 75 MFLOPS FP64 (peak)</title></circle>
-<circle cx="250.2" cy="328.1" r="3.2" class="shelf-pt"><title>1996 Gateway 2000 G6-200, Pentium Pro 200 MHz: 200 MFLOPS FP64 (peak)</title></circle>
-<circle cx="309.0" cy="308.4" r="3.2" class="shelf-pt"><title>1999 Intel Pentium III 550 MHz: 550 MFLOPS FP64 (peak)</title></circle>
-<circle cx="328.7" cy="293.3" r="3.2" class="shelf-pt"><title>2000 AMD Athlon 600 MHz: 1.2 GFLOPS FP64 (peak)</title></circle>
-<circle cx="387.5" cy="261.9" r="3.2" class="shelf-pt"><title>2003 Intel Pentium 4 3.0 GHz (Northwood): 6 GFLOPS FP64 (peak)</title></circle>
-<circle cx="465.9" cy="225.8" r="3.2" class="shelf-pt"><title>2007 Intel Core 2 Quad Q6600, 4 cores 2.4 GHz: 38.4 GFLOPS FP64 (peak)</title></circle>
-<circle cx="544.3" cy="205.6" r="3.2" class="shelf-pt"><title>2011 Intel Core i7-2600K, 4 cores 3.4 GHz, AVX: 108.8 GFLOPS FP64 (arch)</title></circle>
-<circle cx="583.5" cy="157.3" r="3.2" class="shelf-pt"><title>2013 Nvidia GeForce GTX Titan: 1.3 TFLOPS FP64 (vendor)</title></circle>
-<circle cx="701.1" cy="138.2" r="3.2" class="shelf-pt"><title>2019 AMD Radeon VII: 3.46 TFLOPS FP64 (vendor)</title></circle>
-<circle cx="759.9" cy="157.4" r="3.2" class="shelf-pt"><title>2022 Nvidia GeForce RTX 4090: 1.29 TFLOPS FP64 (vendor)</title></circle>
-<circle cx="799.1" cy="182.0" r="3.2" class="shelf-pt"><title>2024 Apple M4 Pro, 10 P-cores (this laptop): 365.36 GFLOPS FP64 (measured)</title></circle>
-<circle cx="88.9" cy="313.7" r="4.5" class="event"/>
-<text x="97.3" y="303.7" class="label">1987: Cray X-MP/24 refused to India (≈420 MFLOPS); X-MP/14 permitted with safeguards</text>
-<circle cx="819.4" cy="78.4" r="4.5" class="event"/>
-<text x="816.8" y="100.4" text-anchor="end" class="label">2025: India capped under the AI Diffusion rule (Jan–May)</text>
-<text x="491.4" y="224.7" class="label threshold-label">control threshold in force for India, FP64-equivalent</text>
-<text x="336.5" y="327.3" class="label shelf-label">fastest FP64 box on the consumer shelf</text>
-<text x="73.8" y="154.5" class="label shelf-label">1987: Compaq 386/20 at 0.16 MFLOPS</text>
+<line x1="86" y1="476.0" x2="856" y2="476.0" class="grid"/>
+<text x="78" y="480.0" text-anchor="end" class="tick">0.1 MFLOPS</text>
+<line x1="86" y1="431.2" x2="856" y2="431.2" class="grid"/>
+<text x="78" y="435.2" text-anchor="end" class="tick">1 MFLOPS</text>
+<line x1="86" y1="386.4" x2="856" y2="386.4" class="grid"/>
+<text x="78" y="390.4" text-anchor="end" class="tick">10 MFLOPS</text>
+<line x1="86" y1="341.6" x2="856" y2="341.6" class="grid"/>
+<text x="78" y="345.6" text-anchor="end" class="tick">100 MFLOPS</text>
+<line x1="86" y1="296.8" x2="856" y2="296.8" class="grid"/>
+<text x="78" y="300.8" text-anchor="end" class="tick">1 GFLOPS</text>
+<line x1="86" y1="252.0" x2="856" y2="252.0" class="grid"/>
+<text x="78" y="256.0" text-anchor="end" class="tick">10 GFLOPS</text>
+<line x1="86" y1="207.2" x2="856" y2="207.2" class="grid"/>
+<text x="78" y="211.2" text-anchor="end" class="tick">100 GFLOPS</text>
+<line x1="86" y1="162.4" x2="856" y2="162.4" class="grid"/>
+<text x="78" y="166.4" text-anchor="end" class="tick">1 TFLOPS</text>
+<line x1="86" y1="117.6" x2="856" y2="117.6" class="grid"/>
+<text x="78" y="121.6" text-anchor="end" class="tick">10 TFLOPS</text>
+<line x1="86" y1="72.8" x2="856" y2="72.8" class="grid"/>
+<text x="78" y="76.8" text-anchor="end" class="tick">100 TFLOPS</text>
+<line x1="86" y1="28.0" x2="856" y2="28.0" class="grid"/>
+<text x="78" y="32.0" text-anchor="end" class="tick">1 PFLOPS</text>
+<text x="152.7" y="494" text-anchor="middle" class="tick">1990</text>
+<line x1="152.7" y1="476" x2="152.7" y2="480" class="axis"/>
+<text x="248.0" y="494" text-anchor="middle" class="tick">1995</text>
+<line x1="248.0" y1="476" x2="248.0" y2="480" class="axis"/>
+<text x="343.3" y="494" text-anchor="middle" class="tick">2000</text>
+<line x1="343.3" y1="476" x2="343.3" y2="480" class="axis"/>
+<text x="438.6" y="494" text-anchor="middle" class="tick">2005</text>
+<line x1="438.6" y1="476" x2="438.6" y2="480" class="axis"/>
+<text x="533.9" y="494" text-anchor="middle" class="tick">2010</text>
+<line x1="533.9" y1="476" x2="533.9" y2="480" class="axis"/>
+<text x="629.2" y="494" text-anchor="middle" class="tick">2015</text>
+<line x1="629.2" y1="476" x2="629.2" y2="480" class="axis"/>
+<text x="724.5" y="494" text-anchor="middle" class="tick">2020</text>
+<line x1="724.5" y1="476" x2="724.5" y2="480" class="axis"/>
+<text x="819.8" y="494" text-anchor="middle" class="tick">2025</text>
+<line x1="819.8" y1="476" x2="819.8" y2="480" class="axis"/>
+<line x1="86" y1="476" x2="856" y2="476" class="axis"/>
+<polyline class="threshold" points="190.8,328.6 228.9,328.6 228.9,288.9 268.3,288.9 268.3,283.3 344.9,283.3 344.9,260.4 355.1,260.4 355.1,247.7 365.3,247.7 365.3,232.0 369.7,232.0 369.7,210.4 384.7,210.4 384.7,194.7 463.6,194.7 463.6,165.9 562.1,165.9 562.1,152.5 581.6,152.5 581.6,139.0 621.4,139.0 621.4,119.9 662.0,119.9 662.0,111.2 681.3,111.2 681.3,106.4 701.9,106.4 701.9,94.8 784.5,94.8 784.5,77.7 856.0,77.7"/>
+<polyline class="chip" points="777.2,78.4 856.0,78.4"/>
+<polyline class="shelf" points="95.5,466.9 152.7,424.7 228.9,347.2 267.1,328.1 324.2,308.4 343.3,293.3 400.5,261.9 476.7,225.8 553.0,205.6 591.1,157.3 705.4,138.2 762.6,157.4 800.7,182.0"/>
+<circle cx="95.5" cy="466.9" r="3.2" class="shelf-pt"><title>1987 Compaq Deskpro 386/20 with 80387: 0.16 MFLOPS FP64 (linpack100)</title></circle>
+<circle cx="152.7" cy="424.7" r="3.2" class="shelf-pt"><title>1990 Compaq Deskpro 486/33 with 487: 1.4 MFLOPS FP64 (linpack100)</title></circle>
+<circle cx="228.9" cy="347.2" r="3.2" class="shelf-pt"><title>1994 Intel Pentium 75 MHz: 75 MFLOPS FP64 (peak)</title></circle>
+<circle cx="267.1" cy="328.1" r="3.2" class="shelf-pt"><title>1996 Gateway 2000 G6-200, Pentium Pro 200 MHz: 200 MFLOPS FP64 (peak)</title></circle>
+<circle cx="324.2" cy="308.4" r="3.2" class="shelf-pt"><title>1999 Intel Pentium III 550 MHz: 550 MFLOPS FP64 (peak)</title></circle>
+<circle cx="343.3" cy="293.3" r="3.2" class="shelf-pt"><title>2000 AMD Athlon 600 MHz: 1.2 GFLOPS FP64 (peak)</title></circle>
+<circle cx="400.5" cy="261.9" r="3.2" class="shelf-pt"><title>2003 Intel Pentium 4 3.0 GHz (Northwood): 6 GFLOPS FP64 (peak)</title></circle>
+<circle cx="476.7" cy="225.8" r="3.2" class="shelf-pt"><title>2007 Intel Core 2 Quad Q6600, 4 cores 2.4 GHz: 38.4 GFLOPS FP64 (peak)</title></circle>
+<circle cx="553.0" cy="205.6" r="3.2" class="shelf-pt"><title>2011 Intel Core i7-2600K, 4 cores 3.4 GHz, AVX: 108.8 GFLOPS FP64 (arch)</title></circle>
+<circle cx="591.1" cy="157.3" r="3.2" class="shelf-pt"><title>2013 Nvidia GeForce GTX Titan: 1.3 TFLOPS FP64 (vendor)</title></circle>
+<circle cx="705.4" cy="138.2" r="3.2" class="shelf-pt"><title>2019 AMD Radeon VII: 3.46 TFLOPS FP64 (vendor)</title></circle>
+<circle cx="762.6" cy="157.4" r="3.2" class="shelf-pt"><title>2022 Nvidia GeForce RTX 4090: 1.29 TFLOPS FP64 (vendor)</title></circle>
+<circle cx="800.7" cy="182.0" r="3.2" class="shelf-pt"><title>2024 Apple M4 Pro, 10 P-cores (this laptop): 365.36 GFLOPS FP64 (measured)</title></circle>
+<circle cx="110.2" cy="313.7" r="4.5" class="event"/>
+<line x1="110.2" y1="307.7" x2="126.0" y2="262.4" class="leader"/>
+<text x="131.7" y="250.4" class="label">1987: Cray X-MP/24 refused</text>
+<text x="131.7" y="264.4" class="label">≈420 MFLOPS; X-MP/14 permitted</text>
+<text x="116.5" y="470.9" class="label shelf-label">1987: Compaq 386/20, 0.16 MFLOPS</text>
+<text x="377.6" y="188.7" text-anchor="end" class="label threshold-label">control threshold in force for India</text>
+<text x="411.9" y="301.9" class="label shelf-label">consumer shelf, fastest FP64 box</text>
+<circle cx="820.4" cy="78.4" r="4.5" class="event"/>
+<text x="852.2" y="54.4" text-anchor="end" class="label">2025: India capped under the AI Diffusion rule, Jan–May</text>
+<text x="852.2" y="70.4" text-anchor="end" class="label chip-label">3A090 chips: TPP 4,800 ≈ 75 TFLOPS if FP64 were the fastest precision</text>
 </svg>
 <!-- chart:end -->
 <figcaption>Log scale, FP64-equivalent MFLOPS. Solid line: the control threshold in force for India, converted as described below. Dashed: the 2022 chip rule, which is not an FP64 measure and is drawn only to show where it sits. Points: the fastest FP64 box a person could buy that year. Hover a point for its source.</figcaption>
